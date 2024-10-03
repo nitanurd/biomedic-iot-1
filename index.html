@@ -56,7 +56,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#connecting-to-campus-wifi">Connecting to Campus Wifi</a>
+    <li class="toctree-l2"><a class="reference internal" href="#connecting-to-the-university-wifi">Connecting to the University WiFi</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#esp-8266_1">ESP 8266</a>
     </li>
@@ -76,7 +76,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="info/">Information</a>
+                <li class="toctree-l1"><a class="reference internal" href="brokers/">Brokers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="info/">Information and scopes</a>
                 </li>
               </ul>
       </div>
@@ -140,13 +144,13 @@
 <p>In this case, if you are using Windows, follow this instruction to install the necessary driver:<br />
 - Video guide: <a href="https://www.youtube.com/watch?v=IxH_1LApjPc">https://www.youtube.com/watch?v=IxH_1LApjPc</a><br />
 - Driver:  <a href="attachments/CH341SER_WIN_3.4.zip">v3.4</a> or <a href="attachments/CH341SER_WIN_3.5.zip">v3.5</a></p>
-<p>There are some reports that the latest driver is problematic. In this case, we will use v3.4 or v3.5. </p>
+<p>There are some reports that the latest driver is problematic. Thus, we will use v3.4 or v3.5. </p>
 <p>Finally, in the Arduino IDE, we can now set the device to: "LOLIN (WEMOS) D1 mini (clone)". Do this from the menu <code>Tools &gt;&gt; Board &gt;&gt; ESP 8266 Boards (3.1.2) &gt;&gt; LOLIN (WEMOS) D1 mini (clone)</code></p>
 <h3 id="arduino-uno-r4-wifi">Arduino UNO R4 WiFi</h3>
 <p>The official  instruction can be found here:<br />
 <a href="https://docs.arduino.cc/tutorials/uno-r4-wifi/r4-wifi-getting-started/">https://docs.arduino.cc/tutorials/uno-r4-wifi/r4-wifi-getting-started/</a></p>
-<h2 id="connecting-to-campus-wifi">Connecting to Campus Wifi</h2>
-<p>Our campus uses enterprise WiFi in its campus.  Depending on your device, use the following codes to connect to campus WiFi:</p>
+<h2 id="connecting-to-the-university-wifi">Connecting to the University WiFi</h2>
+<p>Our university uses enterprise WiFi in its campus.  Depending on your device, use the following codes to connect to the university WiFi:</p>
 <h3 id="esp-8266_1">ESP 8266</h3>
 <pre><code class="language-cpp">#include  &lt;ESP8266WiFi.h&gt;
 
@@ -292,5 +296,5 @@ void setup() {
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-10-02 22:09:28.288131+00:00
+Build Date UTC : 2024-10-03 01:31:38.645821+00:00
 -->
