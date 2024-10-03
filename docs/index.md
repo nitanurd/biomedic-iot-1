@@ -35,7 +35,7 @@ In this case, if you are using Windows, follow this instruction to install the n
 - Video guide: [https://www.youtube.com/watch?v=IxH_1LApjPc](https://www.youtube.com/watch?v=IxH_1LApjPc)  
 - Driver:  [v3.4](attachments/CH341SER_WIN_3.4.zip) or [v3.5](attachments/CH341SER_WIN_3.5.zip)
 
-There are some reports that the latest driver is problematic. In this case, we will use v3.4 or v3.5. 
+There are some reports that the latest driver is problematic. Thus, we will use v3.4 or v3.5. 
 
 Finally, in the Arduino IDE, we can now set the device to: "LOLIN (WEMOS) D1 mini (clone)". Do this from the menu `Tools >> Board >> ESP 8266 Boards (3.1.2) >> LOLIN (WEMOS) D1 mini (clone)`
 
@@ -43,9 +43,9 @@ Finally, in the Arduino IDE, we can now set the device to: "LOLIN (WEMOS) D1 min
 
 The official  instruction can be found here:  
 [https://docs.arduino.cc/tutorials/uno-r4-wifi/r4-wifi-getting-started/](https://docs.arduino.cc/tutorials/uno-r4-wifi/r4-wifi-getting-started/)
-## Connecting to Campus Wifi
+## Connecting to the University WiFi
 
-Our campus uses enterprise WiFi in its campus.  Depending on your device, use the following codes to connect to campus WiFi:
+Our university uses enterprise WiFi in its campus.  Depending on your device, use the following codes to connect to the university WiFi:
 ### ESP 8266
 ```cpp
 #include  <ESP8266WiFi.h>
