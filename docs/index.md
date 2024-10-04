@@ -1,13 +1,11 @@
 # First-time setup
 Before we start playing with the MQTT protocol for our IoT class, there are some initial preparations that we must do.
 ## The supported devices
+In the class, we can either use<u> ESP 32 or  Lolin Wemos D1 Mini</u>. The later -- especially the cloned version -- is very cheap! However, we can always use other IoT enabled devices, such as Arduino UNO R4 WiFi, Raspberry Pi, and many more. 
 
-These are some microcontrollers with IoT capabilities: from left to right: ESP 32, Lolin Wemos D1 Mini Clone, and Arduino Uno R4 WiFi. 
-<u>Do not forget to get the correct USB cable</u>.
-
-|                                                                 |                                                                                    |                                                                              |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| ![ESP 32\|240](attachments/Pasted%20image%2020241002173452.png) | ![Lolin Wemos D1 Mini Clone\|150](attachments/Pasted%20image%2020241002173115.png) | ![Arduono Uno R4 WiFi\|210](attachments/Pasted%20image%2020241001140659.png) |
+|                                                                 |                                                                                    |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| ![ESP 32\|240](attachments/Pasted%20image%2020241002173452.png) | ![Lolin Wemos D1 Mini Clone\|150](attachments/Pasted%20image%2020241002173115.png) |
 
 ## Arduino IDE
 Download and install the Arduino IDE from the [official website](https://www.arduino.cc/en/software) .
@@ -37,12 +35,7 @@ In this case, if you are using Windows, follow this instruction to install the n
 
 There are some reports that the latest driver is problematic. Thus, we will use v3.4 or v3.5. 
 
-Finally, in the Arduino IDE, we can now set the device to: "LOLIN (WEMOS) D1 mini (clone)". Do this from the menu `Tools >> Board >> ESP 8266 Boards (3.1.2) >> LOLIN (WEMOS) D1 mini (clone)`
-
-### Arduino UNO R4 WiFi
-
-The official  instruction can be found here:  
-[https://docs.arduino.cc/tutorials/uno-r4-wifi/r4-wifi-getting-started/](https://docs.arduino.cc/tutorials/uno-r4-wifi/r4-wifi-getting-started/)
+Finally, in the Arduino IDE, we can now set the device to: "LOLIN (WEMOS) D1 mini (clone)". Do this from the menu `Tools >> Board >> ESP 8266 Boards (3.1.2) >> LOLIN (WEMOS) D1 mini (clone)`  
 ## Connecting to the University WiFi
 
 Our university uses enterprise WiFi in its campus.  Depending on your device, use the following codes to connect to the university WiFi:
@@ -137,8 +130,6 @@ void setup() {
     Serial.println(WiFi.localIP());
 }
 ```
-
-### Uno R4 WiFi
 ## Assignment
 Create a reusable function that can be used easily to connect to the campus internet. The prototype of the function should look like one of the followings:  
 - `void connect_to_campus_wifi_esp866(char* ssid, char* id, char* pwd)`  
