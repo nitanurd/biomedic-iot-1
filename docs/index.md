@@ -82,7 +82,6 @@ void setup() {
   wifi_station_set_enterprise_username((uint8*)username, strlen(username));
   wifi_station_set_enterprise_password((uint8*)password, strlen((char*)password));
 
-  
   wifi_station_connect();
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
@@ -140,8 +139,8 @@ void setup() {
 ```
 
 ### Uno R4 WiFi
-## Assignments
+## Assignment
 Create a reusable function that can be used easily to connect to the campus internet. The prototype of the function should look like one of the followings:  
-- `void connect_to_campus_wifi_esp866(char* id, char* pwd)`  
-- `void connect_to_campus_wifi_esp32(char* id, char* pwd)`  
-- `void connect_to_campus_wifi_unor4(char* id, char* pwd)`  
+- `void connect_to_campus_wifi_esp866(char* ssid, char* id, char* pwd)`  
+- `void connect_to_campus_wifi_esp32(char* ssid, char* id, char* pwd)`  
+- `void connect_to_campus_wifi_unor4(char* ssid, char* id, char* pwd)`  

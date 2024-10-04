@@ -58,27 +58,27 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#setup-the-clients">Setup the clients</a>
+    <li class="toctree-l3"><a class="reference internal" href="#clients">Clients</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#assignment">Assignment</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#serverless-brokers">Serverless brokers</a>
+    <li class="toctree-l2"><a class="reference internal" href="#hivemq">HiveMQ</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#hivemq">HiveMQ</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#emqx">EMQX</a>
+    <li class="toctree-l3"><a class="reference internal" href="#create-and-run-the-broker">Create and run the broker</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#managed-brokers">Managed brokers</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#blynk">Blynk</a>
+    <li class="toctree-l2"><a class="reference internal" href="#emqx-assignment">EMQX (assignment)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#antares">Antares</a>
-    </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#blynk">Blynk</a>
     </li>
     </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../clients/">Clients</a>
                 </li>
               </ul>
               <ul>
@@ -112,147 +112,48 @@
 <p>There are several brokers that we are going to try:<br />
 - test.mosquito.org<br />
 - local broker<br />
-- serverles brokers (HiveMQ, EMQX)<br />
-- managed brokers (Blynk, Antares)  </p>
+- serverles brokers (HiveMQ, EMQX, etc)<br />
+- managed brokers (Blynk, Antares, etc)   </p>
+<hr />
 <h2 id="playing-with-testmosquittoorg">Playing with test.mosquitto.org</h2>
-<p>Eclipse Mosquitto provides a simple broker in the <a href="https://test.mosquitto.org/">cloud</a> that we can use for testings. In fact, test.mosquitto.org can be considered as a serverless broker. Please note that at the moment, we will only use<u> the unencrypted-unauthenticated type of connection</u>. Thus, we will use the provided port number 1883.</p>
+<p>Eclipse Mosquitto provides a simple broker in the <a href="https://test.mosquitto.org/">cloud</a> that we can use for testings. In fact, test.mosquitto.org can be considered as another serverless broker. We will use port number 1883 for <u>unencrypted-unauthenticated</u> connections.</p>
 <hr />
 <h2 id="local-broker">Local broker</h2>
 <p>It is possible to install a broker in our own computer. In this case, our IoT devices connect to our computer directly. Internet connection becomes unnecessary.</p>
 <h3 id="setup-the-local-broker">Setup the local broker</h3>
-<p>This is a good documentations on how to install the broker on:    </p>
+<p>These are some good documentations on how to install the broker on Linux and Windows systems. <u>We must make sure that we allow anonymous connectios to the broker</u>.</p>
 <h4 id="linux-system">Linux system:</h4>
 <p><a href="https://docs.vultr.com/install-mosquitto-mqtt-broker-on-ubuntu-20-04-server">https://docs.vultr.com/install-mosquitto-mqtt-broker-on-ubuntu-20-04-server</a>  </p>
 <h4 id="windows-system">Windows system:</h4>
 <p><a href="https://cedalo.com/blog/how-to-install-mosquitto-mqtt-broker-on-windows/">https://cedalo.com/blog/how-to-install-mosquitto-mqtt-broker-on-windows/</a> -- follow step 1, 2, 5, 7, 8, 9, and 10. For step 5, follow only up to the point where we allow anonymous connections.</p>
-<h3 id="setup-the-clients">Setup the clients</h3>
+<h3 id="clients">Clients</h3>
+<p>One way to create a client is by simulating the client from the same computer. Here, we can use the <code>mosquitto_pub</code> and <code>mosquitto_sub</code> commands by using the following formats.  </p>
+<ul>
+<li><code>mosquitto_pub -m PAYLOAD -t TOPIC</code>  </li>
+<li><code>mosquitto_sub -t TOPIC</code></li>
+</ul>
+<p>To connect from our IoT devices, we can adapt the provided Arduino MQTT client template to connect to our local broker. <u>Please note that our local broker accepts anonymous connections</u>.</p>
+<h3 id="assignment">Assignment</h3>
+<p>Adapt the provided Arduino MQTT client template to connect to your local broker.</p>
 <hr />
-<h2 id="serverless-brokers">Serverless brokers</h2>
-<h3 id="hivemq">HiveMQ</h3>
-<p>With HiveMQ, only secure connection is allowed (see <a href="https://community.hivemq.com/t/use-1883-port-instead-of-8883/2010/4">this link.</a>)
-<img alt="|650" src="../attachments/Pasted%20image%2020241003075831.png" /></p>
-<p>Next, create several user ids and passwords from the `Access Management1 menu.
+<h2 id="hivemq">HiveMQ</h2>
+<h3 id="create-and-run-the-broker">Create and run the broker</h3>
+<p>First, create a HiveMQ account for free and sign in to that account. After that, click  <code>Create New Cluster &gt;&gt; Manage Cluster</code>.  </p>
+<p><img alt="|650" src="../attachments/Pasted%20image%2020241003075831.png" /></p>
+<p>In HiveMQ, clients must have accounts and passwords. Therefore, we need to create at least one  username and password which can be done from the <code>Access Management</code> menu.
 <img alt="|600" src="../attachments/Pasted%20image%2020241003080311.png" /></p>
-<pre><code class="language-cpp">#include &lt;ESP8266WiFi.h&gt;
-#include &lt;PubSubClient.h&gt;
-#include &lt;WiFiClientSecure.h&gt;
-
-/****** WiFi Connection Details *******/
-// This is a personal wifi, not an enterprise wifi!
-// You may need to chabge this part to connect to the campus wifi.
-const char* ssid = &quot;wifi_name&quot;;
-const char* password = &quot;wifi_password&quot;;
-
-/******* MQTT Broker Connection Details *******/
-const char* mqtt_server = &quot;bcf21ddabed1412aaf638a09b4732f50.s1.eu.hivemq.cloud&quot;;
-const char* mqtt_username = &quot;Device01&quot;;
-const char* mqtt_password = &quot;Device01&quot;;
-const int mqtt_port = 8883;
-
-/**** Secure WiFi Connectivity Initialisation *****/
-WiFiClientSecure espClient;
-
-/**** MQTT Client Initialisation Using WiFi Connection *****/
-PubSubClient client(espClient);
-
-unsigned long lastMsg = 0;
-#define MSG_BUFFER_SIZE (50)
-char msg[MSG_BUFFER_SIZE];
-
-/************* Connect to WiFi ***********/
-void setup_wifi() {
-  delay(10);
-  Serial.print(&quot;\nConnecting to &quot;);
-  Serial.println(ssid);
-
-  WiFi.mode(WIFI_STA);
-  WiFi.begin(ssid, password);
-
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(&quot;.&quot;);
-  }
-  randomSeed(micros());
-  Serial.println(&quot;\nWiFi connected\nIP address: &quot;);
-  Serial.println(WiFi.localIP());
-}
-
-/************* Connect to MQTT Broker ***********/
-void reconnect() {
-  // Loop until we're reconnected
-  while (!client.connected()) {
-    Serial.print(&quot;Attempting MQTT connection...&quot;);
-    // Attempt to connect
-    if (client.connect(&quot;1&quot;, mqtt_username, mqtt_password)) {
-      Serial.println(&quot;connected&quot;);
-
-      client.subscribe(&quot;topic1/#&quot;);   // subscribe the topics here
-
-    } else {
-      Serial.print(&quot;failed, rc=&quot;);
-      Serial.print(client.state());
-      Serial.println(&quot; try again in 5 seconds&quot;);   // Wait 5 seconds before retrying
-      delay(5000);
-    }
-  }
-}
-
-/***** Call back Method for Receiving MQTT messages ****/
-void subscriberCallback(char* topic, byte* payload, unsigned int length) {
-  String incommingMessage = &quot;&quot;;
-  for (int i = 0; i &lt; length; i++) incommingMessage+=(char)payload[i];
-
-  Serial.println(&quot;Message arrived [&quot;+String(topic)+&quot;]&quot;+incommingMessage);
-}
-
-/**** Method for Publishing MQTT Messages **********/
-void publishMessage(const char* topic, String payload , boolean retained){
-  if (client.publish(topic, payload.c_str(), true))
-      Serial.println(&quot;Message publised [&quot;+String(topic)+&quot;]: &quot;+payload);
-}
-
-
-/**** Application Initialisation Function******/
-void setup() {
-  Serial.begin(115200);
-  while (!Serial) delay(1);
-  setup_wifi();
-
-  espClient.setInsecure();
-
-  client.setServer(mqtt_server, mqtt_port);
-  client.setCallback(subscriberCallback);
-}
-
-
-/******** Main Function *************/
-void loop() {
-
-  if (!client.connected()) reconnect(); // check if client is connected
-  client.loop();
-
-  publishMessage(&quot;topic1/subtopic1&quot;, &quot;789&quot;, true);
-
-  delay(5000);
-
-}
-</code></pre>
-<p>HiveMQ provides web client at:
-    https://www.hivemq.com/demos/websocket-client/</p>
-<p>Arduino tutorial:
-    https://www.hivemq.com/blog/mqtt-on-arduino-nodemcu-esp8266-hivemq-cloud/#heading-connecting-the-node-mcu-board-to-the-arduino-ide-via-usb</p>
 <hr />
-<h3 id="emqx">EMQX</h3>
+<h2 id="emqx-assignment">EMQX (assignment)</h2>
+<p>EMQX also provide a free serverless broker similar to HiveMQ. <br />
+Now, let us setup a connection to EMQX broker from an Arduino MQTT client. <font color="#ff0000">This will become our class assignment</font>.  </p>
 <hr />
-<h2 id="managed-brokers">Managed brokers</h2>
-<h3 id="blynk">Blynk</h3>
-<h3 id="antares">Antares</h3>
+<h2 id="blynk">Blynk</h2>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href=".." class="btn btn-neutral float-left" title="First-time setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../info/" class="btn btn-neutral float-right" title="Information and scopes">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../clients/" class="btn btn-neutral float-right" title="Clients">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -278,7 +179,7 @@ void loop() {
       <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../info/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../clients/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

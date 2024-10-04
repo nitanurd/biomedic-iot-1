@@ -66,13 +66,17 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#assignments">Assignments</a>
+    <li class="toctree-l2"><a class="reference internal" href="#assignment">Assignment</a>
     </li>
     </ul>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="brokers/">Brokers</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="clients/">Clients</a>
                 </li>
               </ul>
               <ul>
@@ -182,7 +186,6 @@ void setup() {
   wifi_station_set_enterprise_username((uint8*)username, strlen(username));
   wifi_station_set_enterprise_password((uint8*)password, strlen((char*)password));
 
-
   wifi_station_connect();
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
@@ -237,11 +240,11 @@ void setup() {
 }
 </code></pre>
 <h3 id="uno-r4-wifi">Uno R4 WiFi</h3>
-<h2 id="assignments">Assignments</h2>
+<h2 id="assignment">Assignment</h2>
 <p>Create a reusable function that can be used easily to connect to the campus internet. The prototype of the function should look like one of the followings:<br />
-- <code>void connect_to_campus_wifi_esp866(char* id, char* pwd)</code><br />
-- <code>void connect_to_campus_wifi_esp32(char* id, char* pwd)</code><br />
-- <code>void connect_to_campus_wifi_unor4(char* id, char* pwd)</code>  </p>
+- <code>void connect_to_campus_wifi_esp866(char* ssid, char* id, char* pwd)</code><br />
+- <code>void connect_to_campus_wifi_esp32(char* ssid, char* id, char* pwd)</code><br />
+- <code>void connect_to_campus_wifi_unor4(char* ssid, char* id, char* pwd)</code>  </p>
               
             </div>
           </div><footer>
@@ -292,5 +295,5 @@ void setup() {
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-10-03 01:33:23.451285+00:00
+Build Date UTC : 2024-10-04 09:20:05.190814+00:00
 -->
